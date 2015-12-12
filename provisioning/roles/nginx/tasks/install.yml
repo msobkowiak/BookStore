@@ -1,0 +1,21 @@
+- name: Install Nginx
+  yum: name=nginx16 disable_gpg_check=yes
+
+- name: Add nginx to chkconfig
+  command: chkconfig --add nginx
+
+- name: Auto start nginx
+  command: chkconfig --levels 235 nginx on
+  notify: restart nginx
+
+- name: Set nginx user
+  lineinfile: >
+    dest={{ item }}
+    regexp=^;?user
+    line='user  vagrant;'
+  with_items:
+    - /etc/nginx/nginx.conf
+  notify: restart nginx
+
+- name: Grant privileges to the nginx tmp directory
+  shell: chown -R vagrant:vagrant /var/lib/nginx

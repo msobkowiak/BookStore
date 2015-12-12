@@ -1,0 +1,3 @@
+- name: Set Opcache
+  template: src=xdebug.ini dest=/etc/php.d/xdebug.ini
+  notify: restart php-fpm

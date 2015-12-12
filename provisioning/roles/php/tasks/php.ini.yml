@@ -1,0 +1,15 @@
+- name: Set Timezone
+  lineinfile: >
+    dest={{ item }}
+    regexp=^;?date.timezone
+    line='date.timezone = UTC'
+  with_items:
+    - /etc/php.ini
+
+- name: Set realpath_cache_size
+  lineinfile: >
+    dest={{ item }}
+    regexp=^;?realpath_cache_size
+    line='realpath_cache_size = 4096k'
+  with_items:
+    - /etc/php.ini

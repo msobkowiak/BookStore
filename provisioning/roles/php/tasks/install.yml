@@ -1,0 +1,18 @@
+- name: Install PHP
+  yum: name={{ item }} disable_gpg_check=yes
+  with_items:
+    - php55w-fpm
+    - php55w-common
+    - php55w-devel
+    - php55w-json
+    - php55w-cli
+    - php55w-intl
+    - php55w-curl
+    - php55w-xml
+    - php55w-mbstring
+    - php55w-pdo
+    - php55w-gd
+    - php55w-mcrypt
+    - php55w-pecl-xdebug
+    - php55w-opcache
+    - php55w-mysql

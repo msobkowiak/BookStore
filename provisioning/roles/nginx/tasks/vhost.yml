@@ -1,0 +1,12 @@
+- name: Install the vhost
+  copy: src=vhost.conf dest=/etc/nginx/conf.d/app.conf
+
+- name: Configure the vhost
+  lineinfile: dest=/etc/nginx/conf.d/app.conf regexp="server_name" line="    server_name {{ansible_fqdn}};"
+  notify: restart nginx
+
+- name: Remove default nginx configuration
+  file: path={{ item }} state=absent
+  with_items:
+    - /etc/nginx/conf.d/virtual.conf
+    - /etc/nginx/conf.d/ssl.conf

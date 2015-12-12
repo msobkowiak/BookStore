@@ -1,0 +1,37 @@
+---
+- name: Install common packages
+  yum: name={{ item }} state=present
+  sudo: yes
+  with_items:
+    - htop
+    - vim
+    - libselinux-python
+    - wget
+    - gcc
+    - nano
+    - npm
+
+- name: Copy the EPEL repository definition
+  copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
+
+- name: Create the GPG key for EPEL
+  copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
+
+- name: get epel-repo rpm RHEL6
+  get_url: dest=/tmp/epel-release.rpm  url=http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+- name: Create the GPG key for remi
+  copy: src=RPM-GPG-KEY-remi dest=/etc/pki/rpm-gpg
+
+- name: get remi rpm RHEL6
+  get_url: dest=/tmp/remi-release.rpm  url=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+- name: install epel-repo rpm
+  yum: pkg=/tmp/epel-release.rpm state=installed
+
+- name: install remi
+  yum: pkg=/tmp/remi-release.rpm state=installed
+
+- name: Install custom repo
+  yum: name=http://mirror.webtatic.com/yum/el6/latest.rpm state=present
+  sudo: yes

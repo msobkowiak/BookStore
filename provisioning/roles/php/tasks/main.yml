@@ -1,0 +1,6 @@
+- include: install.yml
+- include: php.ini.yml
+- include: php-fpm.yml
+- include: xdebug.yml
+- include: opcache.yml
+
