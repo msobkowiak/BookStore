@@ -27,7 +27,12 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/rest-bundle": "^1.7",
-        "jms/serializer-bundle": "^1.1"
+        "jms/serializer-bundle": "^1.1",
+        "symfony/finder": "^3.0",
+        "symfony/yaml": "~2.3",
+        "symfony/console": "~2.3",
+        "doctrine/migrations": "^1.1",
+        "doctrine/doctrine-migrations-bundle": "^1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

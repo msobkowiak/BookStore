@@ -1,8 +1,9 @@
+book:
+    resource: "@BookBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 api_books:
-    resource: "@ApiBundle/Controller/V1/"
+    resource: "@BookBundle/Controller/V1/"
     type:     annotation
     prefix:   /api/v1
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation

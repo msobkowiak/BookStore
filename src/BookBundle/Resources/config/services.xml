@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- repositories -->
+        <service id="api.repository.book" class="BookBundle\Repository\BooksRepository"/>
+
+        <!-- services -->
+        <service id="api.service.books_service" class="BookBundle\Service\BooksService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager" />
+            </call>
+            <call method="setBooksListMapper">
+                <argument type="service" id="api.mapper.booksList_mapper"/>
+            </call>
+        </service>
+
+        <!-- mappers -->
+        <service id="api.mapper.book_mapper" class="BookBundle\Mapper\BookMapper"/>
+
+        <service id="api.mapper.booksList_mapper" class="BookBundle\Mapper\BooksListMapper">
+            <call method="setBookMapper">
+                <argument type="service" id="api.mapper.book_mapper"/>
+            </call>
+        </service>
+
+    </services>
+</container>

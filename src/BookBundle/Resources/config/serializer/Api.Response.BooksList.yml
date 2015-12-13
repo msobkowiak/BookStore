@@ -1,0 +1,2 @@
+ApiBundle\Response\Booking\BooksList:
+    exclusion_policy: NONE

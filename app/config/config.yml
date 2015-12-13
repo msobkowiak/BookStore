@@ -2,12 +2,14 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@BookBundle/Resources/config/services.xml" }
     - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    jms_serializer.infer_types_from_doctrine_metadata: true
 
 framework:
     #esi:             ~
@@ -72,16 +74,55 @@ swiftmailer:
 
 # FOS REST Bundle Configuration:
 fos_rest:
+    body_listener: true
+
+    # Param fetcher is a helper to validate parameters of the active request, with the listener enabled you can use
+    # ParamFetcher to fetch stuff from query or request and will pass on validations
+    param_fetcher_listener: 'force'
+
+    access_denied_listener:
+        # all requests using the 'json' format will return a 403 on an access denied violation
+        json: true
+
     format_listener:
-          rules:
-              - { path: ^/api/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: true }
-    routing_loader:
-        default_format: json
-    param_fetcher_listener: true
+        rules:
+            - { path: ^/api, priorities: ['json'], fallback_format: json, prefer_extension: false}
+            - { path: '^/static', priorities: ['html'], fallback_format: 'html', prefer_extension: false }
+    serializer:
+        # Serialize null values inside data
+        # return array('t' => 1, 's' => null);
+        # false: {"t":1}
+        # true: {"t":1,"s":null}
+        serialize_null: true
+
     view:
-        view_response_listener: 'force'
+        # If you use 'force' instead:
+        # https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Resources/doc/3-listener-support.md#view-response-listener
+        # makes possible to simple return an View or array, and it is converted into a response
+        view_response_listener: true
+
+        # https://github.com/FriendsOfSymfony/FOSRestBundle/issues/459
+        # The setting is not about serializing null values inside data, but rather serializing empty data at all.
+        # If you turn this in true a return null will be serialized and content returned, so no 204 but 200 instead
+        serialize_null: false
+
         formats:
-            xml: true
             json: true
+            xml: true
+
         templating_formats:
             html: true
+
+        default_engine: twig
+        force_redirects:
+            json: true
+
+        # View exceptions
+        failed_validation: HTTP_BAD_REQUEST
+        empty_content: HTTP_NO_CONTENT
+
+# Serializer Configuration:
+jms_serializer:
+    visitors:
+        json:
+            options: JSON_UNESCAPED_SLASHES
