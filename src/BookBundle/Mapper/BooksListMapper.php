@@ -1,25 +1,22 @@
 <?php
 namespace BookBundle\Mapper;
 
-use BookBundle\Response\BooksList;
+use BookBundle\Entity\Book;
+use BookBundle\Entity\BooksList;
+use BookBundle\Entity\EnhancedBook;
 
 class BooksListMapper
 {
+
     /**
-     * @var BookMapper
+     * @param Book[] $booksData
+     * @return BooksList
      */
-    private $bookMapper;
-
-    public function setBookMapper(BookMapper $bookMapper)
-    {
-        $this->bookMapper = $bookMapper;
-    }
-
     public function map($booksData)
     {
         $books = new BooksList();
-        foreach ($booksData as $bookData) {
-            $books->addBook($this->bookMapper->map($bookData));
+        foreach ($booksData as $book) {
+            $books->addBook(new EnhancedBook($book));
         }
 
         return $books;

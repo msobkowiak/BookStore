@@ -1,9 +1,4 @@
-book:
-    resource: "@BookBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-api_books:
-    resource: "@BookBundle/Controller/V1/"
-    type:     annotation
-    prefix:   /api/v1
+api_bookstore_books:
+    resource: "@BookBundle/Resources/config/routing.yml"
+    type:     rest
+    prefix:   /api

@@ -99,7 +99,7 @@ fos_rest:
         # If you use 'force' instead:
         # https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Resources/doc/3-listener-support.md#view-response-listener
         # makes possible to simple return an View or array, and it is converted into a response
-        view_response_listener: true
+        view_response_listener: force
 
         # https://github.com/FriendsOfSymfony/FOSRestBundle/issues/459
         # The setting is not about serializing null values inside data, but rather serializing empty data at all.
@@ -120,6 +120,9 @@ fos_rest:
         # View exceptions
         failed_validation: HTTP_BAD_REQUEST
         empty_content: HTTP_NO_CONTENT
+
+sensio_framework_extra:
+    view:    { annotations: false }
 
 # Serializer Configuration:
 jms_serializer:

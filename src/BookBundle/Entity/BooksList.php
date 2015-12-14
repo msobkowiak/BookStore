@@ -1,12 +1,15 @@
 <?php
-namespace BookBundle\Response;
+namespace BookBundle\Entity;
 
 class BooksList
 {
+
+    protected $paginator;
+
     /**
      * @var Book[]
      */
-    private $books;
+    protected $books;
 
     public function __construct()
     {
@@ -22,7 +25,7 @@ class BooksList
     }
 
     /**
-     * @param Book $book
+     * @param Book[] $book
      * @return $this
      */
     public function addBook($book)

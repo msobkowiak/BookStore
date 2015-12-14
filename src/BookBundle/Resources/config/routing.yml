@@ -1,0 +1,9 @@
+api_bookstore_books_book:
+    resource: @BookBundle/Controller/BookController.php
+    prefix:   /books
+    type:     rest
+
+api_bookstore_books_book_list:
+    resource: @BookBundle/Controller/BookListController.php
+    prefix:   /books
+    type:     rest

@@ -20,13 +20,7 @@
         </service>
 
         <!-- mappers -->
-        <service id="api.mapper.book_mapper" class="BookBundle\Mapper\BookMapper"/>
-
-        <service id="api.mapper.booksList_mapper" class="BookBundle\Mapper\BooksListMapper">
-            <call method="setBookMapper">
-                <argument type="service" id="api.mapper.book_mapper"/>
-            </call>
-        </service>
+        <service id="api.mapper.booksList_mapper" class="BookBundle\Mapper\BooksListMapper"/>
 
     </services>
 </container>

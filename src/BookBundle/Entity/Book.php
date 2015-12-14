@@ -2,6 +2,9 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * @ORM\Entity
@@ -11,41 +14,44 @@ class Book
 {
     /**
      * @var integer
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id()
      * @ORM\Column(name="id", type="integer")
+     *
+     * @Exclude()
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      * @ORM\Column(name="title", type="string")
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      * @ORM\Column(name="author", type="string")
      */
-    private $author;
+    protected $author;
 
     /**
      * @var string
      * @ORM\Column(name="type", type="string")
      */
-    private $type;
+    protected $type;
 
     /**
      * @var integer
      * @ORM\Column(name="year", type="integer")
      */
-    private $year;
+    protected $year;
 
     /**
      * @var float
      * @ORM\Column(name="price", type="float")
      */
-    private $price;
+    protected $price;
 
     /**
      * @return int
@@ -153,5 +159,16 @@ class Book
     {
         $this->price = $price;
         return $this;
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("uri")
+     *
+     * @return string
+     */
+    public function getUri()
+    {
+        return '/books/' . $this->id;
     }
 }
