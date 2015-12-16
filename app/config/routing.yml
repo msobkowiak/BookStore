@@ -1,3 +1,11 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/"
+
+# user:
+#    resource: "@UserBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
 api_bookstore_books:
     resource: "@BookBundle/Resources/config/routing.yml"
     type:     rest

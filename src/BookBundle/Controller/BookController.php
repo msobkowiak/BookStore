@@ -29,21 +29,20 @@ class BookController extends FOSRestController implements ControllerInterface
             throw new NotFoundHttpException($e->getMessage());
         }
 
-
         return $response;
     }
 
-    public function postAction()
+    public function postAction($id)
     {
         throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_POST));
     }
 
-    public function putAction()
+    public function putAction($id)
     {
         throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_PUT));
     }
 
-    public function deleteAction()
+    public function deleteAction($id)
     {
         throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_DELETE));
     }

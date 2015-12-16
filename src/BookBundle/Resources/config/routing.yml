@@ -1,3 +1,8 @@
+api_bookstore_books_comment:
+    resource: @BookBundle/Controller/CommentsController.php
+    prefix:   /
+    type:     rest
+
 api_bookstore_books_book:
     resource: @BookBundle/Controller/BookController.php
     prefix:   /books

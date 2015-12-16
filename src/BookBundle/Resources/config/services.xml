@@ -19,6 +19,12 @@
             </call>
         </service>
 
+        <service id="api.service.comments_service" class="BookBundle\Service\CommentsService">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager" />
+            </call>
+        </service>
+
         <!-- mappers -->
         <service id="api.mapper.booksList_mapper" class="BookBundle\Mapper\BooksListMapper"/>
 
