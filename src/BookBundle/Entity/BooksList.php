@@ -3,9 +3,6 @@ namespace BookBundle\Entity;
 
 class BooksList
 {
-
-    protected $paginator;
-
     /**
      * @var Book[]
      */

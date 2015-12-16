@@ -2,14 +2,11 @@
 
 namespace BookBundle\Service;
 
-use BookBundle\BookBundle;
 use BookBundle\Entity\Comment;
 use BookBundle\Entity\CommentRequest;
 use BookBundle\Exception\BookNotFountException;
-use BookBundle\Repository\BooksRepository;
 use Doctrine\ORM\EntityManager;
 use UserBundle\Exception\UserNotFoundException;
-use UserBundle\UserBundle;
 
 class CommentsService
 {
@@ -24,7 +21,13 @@ class CommentsService
         $this->entityManager = $entityManager;
     }
 
-
+    /**
+     * @param CommentRequest $request
+     * @param int $bookId
+     * @return Comment
+     * @throws BookNotFountException
+     * @throws UserNotFoundException
+     */
     public function saveComment(CommentRequest $request, $bookId)
     {
         $repo = $this->entityManager->getRepository('BookBundle:Book');
