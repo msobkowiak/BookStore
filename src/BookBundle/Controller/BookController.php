@@ -1,7 +1,6 @@
 <?php
 namespace BookBundle\Controller;
 
-use ApiBundle\Controller\ControllerInterface;
 use BookBundle\Exception\BookNotFountException;
 use BookBundle\Service\BooksService;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -14,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * @NamePrefix("api_bookstore_books_book_")
  */
-class BookController extends FOSRestController implements ControllerInterface
+class BookController extends FOSRestController
 {
     /**
      * @Rest\View()
@@ -34,16 +33,16 @@ class BookController extends FOSRestController implements ControllerInterface
 
     public function postAction($id)
     {
-        throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_POST));
+        throw new MethodNotAllowedHttpException(array());
     }
 
     public function putAction($id)
     {
-        throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_PUT));
+        throw new MethodNotAllowedHttpException(array());
     }
 
     public function deleteAction($id)
     {
-        throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_DELETE));
+        throw new MethodNotAllowedHttpException(array());
     }
 }

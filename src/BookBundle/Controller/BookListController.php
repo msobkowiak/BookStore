@@ -2,7 +2,6 @@
 
 namespace BookBundle\Controller;
 
-use ApiBundle\Controller\ControllerInterface;
 use BookBundle\Service\BooksService;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
@@ -12,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 /**
  * @NamePrefix("api_bookstore_books_book_list_")
  */
-class BookListController extends FOSRestController implements ControllerInterface
+class BookListController extends FOSRestController
 {
     /**
      * @Rest\View()
@@ -28,16 +27,16 @@ class BookListController extends FOSRestController implements ControllerInterfac
 
     public function postAction()
     {
-        throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_POST));
+        throw new MethodNotAllowedHttpException(array());
     }
 
     public function putAction()
     {
-        throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_PUT));
+        throw new MethodNotAllowedHttpException(array());
     }
 
     public function deleteAction()
     {
-        throw new MethodNotAllowedHttpException(array(static::HTTP_METHOD_DELETE));
+        throw new MethodNotAllowedHttpException(array());
     }
 }
